@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Interviewer</title>
+    <script type="text/javascript" data-main="js/main" src="js/lib/require.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="menu">
+        <a id="menu_positions" href="#!positions">Positions</a>
+        <a id="menu_questionnaires" href="#!questionnaires">Questionnaires</a>
+        <a id="menu_candidates" href="#!candidates">Candidates</a>
+    </div>
+    <div id="content"></div>
+
+
+    <script id="positions-template" type="text/mustache">
+        <div id="positions">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Candidates</th>
+                </tr>
+                {{#positions}}
+                <tr id="positions_{{id}}">
+                    <td class="name">{{name}}</td>
+                    <td class="candidates-count">{{count}}</td>
+                    <td class="remove">x</td>
+                </tr>
+                {{/positions}}
+            </table>
+            <a href="#!new-position">Create new position</a>
+        </div>
+    </script>
+    <script id="candidates-template" type="text/mustache">
+        <div id="candidates">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                </tr>
+                {{#candidates}}
+                <tr id="candidates_{{id}}">
+                    <td class="name">{{name}}</td>
+                    <td class="position">{{position}}</td>
+                </tr>
+                {{/candidates}}
+            </table>
+            <a href="#!new-candidate">Create new candidate</a>
+        </div>
+    </script>
+    <script id="questionnaires-template" type="text/mustache">
+        <div id="questionnaires">
+            <table>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                {{#questionnaires}}
+                <tr id="questionnaires_{{id}}">
+                    <td class="name">{{name}}</td>
+                    <td class="remove">x</td>
+                </tr>
+                {{/questionnaires}}
+            </table>
+            <a href="#!new-questionnaire">Create new questionnaire</a>
+        </div>
+    </script>
+    <script id="position-template" type="text/mustache">
+        <div id="position">
+            <div class="label">Position name</div>
+            <div id="name">{{name}}</div>
+            <div class="label">Description</div>
+            <div id="description">{{description}}</div>
+            <div class="label">Number of vacancies</div>
+            <div id="vacancies">{{vacancies}}</div>
+
+            <div class="title">Candidates</div>
+            <table id="candidates">
+            {{#candidates}}
+                <tr id="candidate_{{id}}">
+                    <td>{{name}}</td>
+                    <td class="remove">x</td>
+                </tr>
+            {{/candidates}}
+            </table>
+            <div class="title">Add existing candidate</div>
+            <a href="#!position/{{id}}/new-candidate">Create new candidate</a>
+
+            <div class="title">Questionnaires</div>
+            <table id="questionnaires">
+            {{#questionnaires}}
+                <tr id="questionnaire_{{id}}">
+                    <td>{{name}}</td>
+                    <td class="remove">x</td>
+                </tr>
+            {{/questionnaires}}
+            </table>
+            <div class="title">Add existing questionnaire</div>
+            <a href="#!position/{{id}}/new-questionnaire">Create new questionnaire</a>
+        </div>
+    </script>
+    <script id="questionnaire-template" type="text/mustache">
+        <div id="questionnaire">
+            <div class="label">Questionnaire name</div>
+            <div id="name">{{name}}</div>
+
+            <div class="title">Questions</div>
+            <table>
+            {{#question}}
+                <tr id="question_{{id}}">
+                    <td>{{text}}</td>
+                    <td class="remove">x</td>
+                </tr>
+            {{/question}}
+            </table>
+            <form>
+                <input type="text" placeholder="Type a question">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </script>
+    <script id="candidate-template" type="text/mustache">
+        <div id="candidate">
+            <div class="label">Candidate name</div>
+            <div id="name">{{name}}</div>
+            <div class="label">Experience</div>
+            <div id="experience">{{experience}}</div>
+            <div class="label">Education</div>
+            <div id="education">{{education}}</div>
+
+            <div class="label">Applied for</div>
+            <select id="positions">
+                {{#positions}}
+                <option value="app-position_{{id}}">{{name}}</options>
+                {{/positions}}
+            </select>
+
+            <div class="label">Add to position</div>
+            <select id="all-positions">
+                {{#allPositions}}
+                <option value="position_{{id}}">{{name}}</options>
+                {{/allPositions}}
+            </select>
+
+            <div class="label">Start a questionnaire</div>
+            <select id="questionnaires">
+                {{#questionnaires}}
+                <option value="questionnaire_{{id}}">{{name}}</options>
+                {{/questionnaires}}
+            </select>
+        </div>
+    </script>
+    <script id="compare-candidates-template" type="text/mustache">
+
+    </script>
+    <script id="new-position-template" type="text/mustache">
+
+    </script>
+    <script id="new-questionnaire-template" type="text/mustache">
+
+    </script>
+    <script id="new-candidate-template" type="text/mustache">
+
+    </script>
+</body>
+</html>
